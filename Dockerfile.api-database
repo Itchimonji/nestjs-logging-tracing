@@ -1,0 +1,50 @@
+FROM node:16-alpine AS node
+RUN apk add libressl-dev
+RUN apk add --update --no-cache build-base python3-dev python3 libffi-dev libressl-dev bash git gettext curl \
+ && curl -O https://bootstrap.pypa.io/get-pip.py \
+ && python3 get-pip.py \
+ && pip install --upgrade six awscli awsebcli
+
+# install node-prune (https://github.com/tj/node-prune)
+RUN curl -sf https://gobinaries.com/tj/node-prune | bash -s -- -b /usr/local/bin
+ENV NODE_ENV=development
+
+WORKDIR /usr/app
+
+FROM node AS dependencies
+COPY package.json package-lock.json ./
+
+FROM dependencies AS test-and-build
+COPY . .
+RUN npm config set legacy-peer-deps true
+RUN npm install
+RUN npm ci
+RUN npm run build:api-database
+
+RUN npm prune --production
+RUN /usr/local/bin/node-prune
+
+RUN rm -rf node_modules/.cache
+
+# remove unused dependencies
+RUN rm -rf node_modules/rxjs/src/
+RUN rm -rf node_modules/rxjs/bundles/
+RUN rm -rf node_modules/rxjs/_esm5/
+RUN rm -rf node_modules/rxjs/_esm2015/
+
+# constantly running container only for debugging purposes
+FROM test-and-build as debug
+ENTRYPOINT ["tail", "-f", "/dev/null"]
+
+# use a more slim image for deploying as unnecessary toolchains are not needed for runtime
+FROM node:16-alpine AS node-alpine
+WORKDIR /usr/app
+
+# release
+FROM node-alpine AS release
+# copy production node_modules
+COPY --from=test-and-build /usr/app/node_modules/ node_modules/
+# copy app sources
+COPY --from=test-and-build /usr/app/package.json package.json
+COPY --from=test-and-build /usr/app/dist/ dist/
+CMD ["npm", "run", "production:api-database" ]

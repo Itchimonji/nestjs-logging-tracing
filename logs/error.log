@@ -1,0 +1,4 @@
+{"level":"error","message":"Error","service":"BACKEND_FOR_FRONTEND","timestamp":"2023-01-05T22:29:54.097Z"}
+{"level":"error","message":"Error call","service":"DATABASE_API","timestamp":"2023-01-05T22:29:54.124Z"}
+{"level":"error","message":"Error","service":"BACKEND_FOR_FRONTEND","timestamp":"2023-01-05T22:30:21.275Z"}
+{"level":"error","message":"Error call","service":"DATABASE_API","timestamp":"2023-01-05T22:30:21.281Z"}

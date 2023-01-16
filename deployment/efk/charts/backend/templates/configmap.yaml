@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    app: {{ include "app.fullname" . }}-config
+  name: {{ include "app.fullname" . }}-config
+  namespace: {{ .Values.namespace }}
+data:
+  NODE_ENV: "production"
+  DEBUG: "true"
+  PLAYGROUND: "true"
+  API_PORT: "8080"
+  API_GLOBAL_PREFIX: "api"
+  API_TITLE: "database-api"
+  API_PREFIX: "DATABASE_API_"
+  HTTP_TIMEOUT: "30000"
+  HTTP_MAX_REDIRECTS: "5"

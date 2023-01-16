@@ -1,0 +1,8 @@
+Congratulations ! You installed {{ .Chart.Name }} chart successfully.
+Release name is {{ .Release.Name }}
+
+To get further information, you can run the commands:
+  $ helm status {{ .Release.Name }}
+  $ helm get all {{ .Release.Name }}
+
+Have fun !

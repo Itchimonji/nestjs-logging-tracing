@@ -1,0 +1,8 @@
+apiVersion: v2
+name: frontend
+description: Helm chart for Frontend Application
+keywords:
+  - frontend
+type: application
+appVersion: "1.0.0"
+version: 1.0.0

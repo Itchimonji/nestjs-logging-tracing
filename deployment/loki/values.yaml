@@ -1,0 +1,9 @@
+loki-stack:
+  grafana:
+    enabled: true
+  prometheus:
+    enabled: true
+  fluent-bit:
+    enabled: false
+  promtail:
+    enabled: false

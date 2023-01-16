@@ -1,0 +1,51 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: fluentbit-sidecar
+data:
+  fluent-bit.conf: |
+    [SERVICE]
+        HTTP_Server    On
+        HTTP_Listen    0.0.0.0
+        HTTP_PORT      2020
+        Flush          1
+        Daemon         Off
+        Log_Level      warn
+        Parsers_File   parsers.conf
+    
+    [INPUT]
+        Name tail
+        Path /usr/app/logs/*.log
+        multiline.parser docker, cri
+        Tag custom.*
+        Mem_Buf_Limit 300MB
+        Skip_Long_Lines On
+    
+    [FILTER]
+        Name         parser
+        Parser       docker
+        Match        custom.*
+        Key_Name     log
+        Reserve_Data On
+        Preserve_Key On
+    
+    [FILTER]
+        Name modify
+        Match *
+    
+    [OUTPUT]
+        Name loki
+        Match *
+        Host loki.default.svc.cluster.local
+        Port 3100
+        tenant_id ""
+        Labels job=fluent-bit
+
+  parsers.conf: |
+    [PARSER]
+        Name   docker
+        Format json
+        Time_Key time
+        Time_Format %d/%b/%Y:%H:%M:%S %z
+        Decode_Field_As   escaped_utf8    log    do_next
+        Decode_Field_As   json       log

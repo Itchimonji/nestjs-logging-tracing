@@ -1,0 +1,19 @@
+elasticsearch:
+  # antiAffinity: "soft"
+  esJavaOpts: "-Xmx128m -Xms128m"
+  persistence:
+    enabled: false
+  replicas: 3
+
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "512M"
+
+kibana:
+  persistence:
+    enabled: false
+
+prometheus-elasticsearch-exporter:
+  es:
+    uri: http://elasticsearch-master-headless.elk.svc.cluster.local:9200

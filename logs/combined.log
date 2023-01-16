@@ -1,0 +1,43 @@
+{"level":"info","message":"Register prometheus client with title: DATABASE_API","service":"DATABASE_API","timestamp":"2023-01-05T20:25:07.464Z"}
+{"level":"info","message":"Register prometheus client with prefix: DATABASE_API_","service":"DATABASE_API","timestamp":"2023-01-05T20:25:07.466Z"}
+{"level":"info","message":"Register metrics gauge for: Ready","service":"DATABASE_API","timestamp":"2023-01-05T20:25:07.466Z"}
+{"level":"info","message":"🚀 Application is running on port: http://[::1]:8081/api","service":"DATABASE_API","timestamp":"2023-01-05T20:25:07.475Z"}
+{"level":"info","message":"Register prometheus client with title: DATABASE_API","service":"DATABASE_API","timestamp":"2023-01-05T22:29:19.531Z"}
+{"level":"info","message":"Register prometheus client with prefix: DATABASE_API_","service":"DATABASE_API","timestamp":"2023-01-05T22:29:19.533Z"}
+{"level":"info","message":"Register metrics gauge for: Ready","service":"DATABASE_API","timestamp":"2023-01-05T22:29:19.534Z"}
+{"level":"info","message":"🚀 Application is running on port: http://[::1]:8081/api","service":"DATABASE_API","timestamp":"2023-01-05T22:29:19.542Z"}
+{"level":"info","message":"Register prometheus client with title: BACKEND_FOR_FRONTEND","service":"BACKEND_FOR_FRONTEND","timestamp":"2023-01-05T22:29:37.914Z"}
+{"level":"info","message":"Register prometheus client with prefix: API_Service_","service":"BACKEND_FOR_FRONTEND","timestamp":"2023-01-05T22:29:37.915Z"}
+{"level":"info","message":"Register metrics gauge for: Ready","service":"BACKEND_FOR_FRONTEND","timestamp":"2023-01-05T22:29:37.916Z"}
+{"level":"info","message":"🚀 Application is running on port: http://[::1]:8080/api","service":"BACKEND_FOR_FRONTEND","timestamp":"2023-01-05T22:29:37.924Z"}
+{"level":"info","message":"API movies call","service":"BACKEND_FOR_FRONTEND","timestamp":"2023-01-05T22:29:47.538Z"}
+{"level":"warn","message":"Endpoint for Database API is not accessable. Please make sure the service is running. AxiosError: Request failed with status code 404","service":"BACKEND_FOR_FRONTEND","timestamp":"2023-01-05T22:29:47.554Z"}
+{"level":"error","message":"Error","service":"BACKEND_FOR_FRONTEND","timestamp":"2023-01-05T22:29:54.097Z"}
+{"level":"error","message":"Error call","service":"DATABASE_API","timestamp":"2023-01-05T22:29:54.124Z"}
+{"level":"info","message":"Register prometheus client with title: BACKEND_FOR_FRONTEND","service":"BACKEND_FOR_FRONTEND","timestamp":"2023-01-05T22:30:13.825Z"}
+{"level":"info","message":"Register prometheus client with prefix: API_Service_","service":"BACKEND_FOR_FRONTEND","timestamp":"2023-01-05T22:30:13.826Z"}
+{"level":"info","message":"Register metrics gauge for: Ready","service":"BACKEND_FOR_FRONTEND","timestamp":"2023-01-05T22:30:13.827Z"}
+{"level":"info","message":"🚀 Application is running on port: http://[::1]:8080/api","service":"BACKEND_FOR_FRONTEND","timestamp":"2023-01-05T22:30:13.836Z"}
+{"level":"info","message":"API movies call","service":"BACKEND_FOR_FRONTEND","timestamp":"2023-01-05T22:30:19.229Z"}
+{"level":"warn","message":"Endpoint for Database API is not accessable. Please make sure the service is running. AxiosError: Request failed with status code 404","service":"BACKEND_FOR_FRONTEND","timestamp":"2023-01-05T22:30:19.245Z"}
+{"level":"error","message":"Error","service":"BACKEND_FOR_FRONTEND","timestamp":"2023-01-05T22:30:21.275Z"}
+{"level":"error","message":"Error call","service":"DATABASE_API","timestamp":"2023-01-05T22:30:21.281Z"}
+{"level":"info","message":"Register prometheus client with title: BACKEND_FOR_FRONTEND","service":"BACKEND_FOR_FRONTEND","timestamp":"2023-01-05T22:32:18.600Z"}
+{"level":"info","message":"Register prometheus client with prefix: API_Service_","service":"BACKEND_FOR_FRONTEND","timestamp":"2023-01-05T22:32:18.602Z"}
+{"level":"info","message":"Register metrics gauge for: Ready","service":"BACKEND_FOR_FRONTEND","timestamp":"2023-01-05T22:32:18.603Z"}
+{"level":"info","message":"🚀 Application is running on port: http://[::1]:8080/api","service":"BACKEND_FOR_FRONTEND","timestamp":"2023-01-05T22:32:18.611Z"}
+{"level":"info","message":"API movies call","service":"BACKEND_FOR_FRONTEND","timestamp":"2023-01-05T22:32:28.405Z"}
+{"level":"info","message":"http://localhost:8081/api/","service":"BACKEND_FOR_FRONTEND","timestamp":"2023-01-05T22:32:28.406Z"}
+{"level":"warn","message":"Endpoint for Database API is not accessable. Please make sure the service is running. AxiosError: Request failed with status code 404","service":"BACKEND_FOR_FRONTEND","timestamp":"2023-01-05T22:32:28.419Z"}
+{"level":"info","message":"Register prometheus client with title: BACKEND_FOR_FRONTEND","service":"BACKEND_FOR_FRONTEND","timestamp":"2023-01-05T22:32:37.350Z"}
+{"level":"info","message":"Register prometheus client with prefix: API_Service_","service":"BACKEND_FOR_FRONTEND","timestamp":"2023-01-05T22:32:37.351Z"}
+{"level":"info","message":"Register metrics gauge for: Ready","service":"BACKEND_FOR_FRONTEND","timestamp":"2023-01-05T22:32:37.352Z"}
+{"level":"info","message":"🚀 Application is running on port: http://[::1]:8080/api","service":"BACKEND_FOR_FRONTEND","timestamp":"2023-01-05T22:32:37.361Z"}
+{"level":"info","message":"API movies call","service":"BACKEND_FOR_FRONTEND","timestamp":"2023-01-05T22:32:40.062Z"}
+{"level":"info","message":"http://localhost:8081/api/","service":"BACKEND_FOR_FRONTEND","timestamp":"2023-01-05T22:32:40.062Z"}
+{"level":"info","message":"Contact endpoint: https://swapi.dev/api/films/","service":"DATABASE_API","timestamp":"2023-01-05T22:32:40.077Z"}
+{"level":"info","message":"Successfully called endpoint: https://swapi.dev/api/films/","service":"DATABASE_API","timestamp":"2023-01-05T22:32:42.978Z"}
+{"level":"info","message":"API movies call","service":"BACKEND_FOR_FRONTEND","timestamp":"2023-01-05T22:34:00.588Z"}
+{"level":"info","message":"http://localhost:8081/api/","service":"BACKEND_FOR_FRONTEND","timestamp":"2023-01-05T22:34:00.589Z"}
+{"level":"info","message":"Contact endpoint: https://swapi.dev/api/films/","service":"DATABASE_API","timestamp":"2023-01-05T22:34:00.591Z"}
+{"level":"info","message":"Successfully called endpoint: https://swapi.dev/api/films/","service":"DATABASE_API","timestamp":"2023-01-05T22:34:05.276Z"}
