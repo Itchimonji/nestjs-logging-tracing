@@ -91,17 +91,64 @@ $ terraform destroy --auto-approve
 
 To deploy the charts you need to have installed [Helm](https://helm.sh/).
 
-## Init
+## Loki
+
+### Init
 
 ```
-$ cd ./deployment
-$ helm upgrade --install loki loki
+cd ./deployment
+helm upgrade --install loki loki -f ./loki/values.yaml
 ```
 
-## Destroy
+### Destroy
 
 ```
 helm uninstall loki
+```
+
+## ELK
+
+### Init
+
+```
+$ cd ./deployment
+helm upgrade --install elk elk -f ./elk/values.yaml
+```
+
+### Destroy
+
+```
+helm uninstall elk
+```
+
+## OpenSearch
+
+### Init
+
+```
+cd ./deployment
+helm upgrade --install opensearch opensearch -f ./opensearch/values.yaml
+```
+
+### Destroy
+
+```
+helm uninstall opensearch
+```
+
+## OpenSearch with Sidecar
+
+### Init
+
+```
+cd ./deployment
+helm upgrade --install opensearch-sidecar opensearch-sidecar -f ./opensearch-sidecar/values.yaml
+```
+
+### Destroy
+
+```
+helm uninstall opensearch-sidecar
 ```
 
 # Libraries / Dependencies
