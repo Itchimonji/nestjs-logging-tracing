@@ -1,9 +1,8 @@
 FROM node:16-alpine AS node
-RUN apk add libressl-dev
-RUN apk add --update --no-cache build-base python3-dev python3 libffi-dev libressl-dev bash git gettext curl \
- && curl -O https://bootstrap.pypa.io/get-pip.py \
- && python3 get-pip.py \
- && pip install --upgrade six awscli awsebcli
+
+RUN apk update \
+  &&  apk add openssl1.1-compat
+RUN apk add --update --no-cache build-base python3-dev python3 libffi-dev libressl-dev curl bash
 
 # install node-prune (https://github.com/tj/node-prune)
 RUN curl -sf https://gobinaries.com/tj/node-prune | bash -s -- -b /usr/local/bin
@@ -42,9 +41,14 @@ WORKDIR /usr/app
 
 # release
 FROM node-alpine AS release
+RUN mkdir -p /tmp/npm/_cacache/tmp
+RUN mkdir -p /tmp/npm/_logs
+ENV npm_config_cache /tmp/npm
 # copy production node_modules
-COPY --from=test-and-build /usr/app/node_modules/ node_modules/
+COPY --chown=node:node --from=test-and-build /usr/app/node_modules/ node_modules/
 # copy app sources
-COPY --from=test-and-build /usr/app/package.json package.json
-COPY --from=test-and-build /usr/app/dist/ dist/
+COPY --chown=node:node --from=test-and-build /usr/app/package.json package.json
+COPY --chown=node:node --from=test-and-build /usr/app/dist/ dist/
+
+ENV NODE_ENV=production
 CMD ["npm", "run", "production" ]

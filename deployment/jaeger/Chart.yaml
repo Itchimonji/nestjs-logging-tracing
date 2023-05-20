@@ -1,0 +1,10 @@
+apiVersion: v2
+name: k8s-core-tools-jaeger
+appVersion: "1.0"
+description: A Helm chart for Jaeger
+version: 1.0.0
+type: application
+dependencies:
+  - name: jaeger
+    version: "0.65.1"
+    repository: "https://jaegertracing.github.io/helm-charts"

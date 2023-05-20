@@ -1,0 +1,2 @@
+{"level":"error","message":"Nest application error: listen EADDRINUSE: address already in use :::8081","service":"api-service","timestamp":"2023-05-20T18:11:36.486Z"}
+{"level":"error","message":"Nest application error: listen EADDRINUSE: address already in use :::8081","service":"api-service","timestamp":"2023-05-20T18:12:09.772Z"}

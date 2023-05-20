@@ -1,0 +1,90 @@
+# For canary testing you need to duplicate this deployment configuration file
+# and change "stable" to "canary" and add another repository version number
+# after that helm will deploy this environment too
+# so, 2 pods are running in the cluster. 50% with version 1 and the other 50% with version 2
+# track: canary
+# rel: canary
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "app.fullname" . }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ include "app.fullname" . }}
+    rel: stable
+    phase: dev
+    deployment: v1
+  annotations:
+    "sidecar.jaegertracing.io/inject": "true"
+spec:
+  strategy:
+    type: RollingUpdate
+  replicas: {{ .Values.replicaCount }}
+  revisionHistoryLimit: {{ .Values.revisionHistoryLimit }}
+  minReadySeconds: 10
+  selector:
+    matchLabels:
+      app: {{ include "app.fullname" . }}
+      track: stable
+  template:
+    metadata:
+      labels:
+        app: {{ include "app.fullname" . }}
+        rel: stable
+        track: stable
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8080"
+        prometheus.io/path: "/api/metrics"
+    spec:
+      containers:
+        - name: backend
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          imagePullPolicy: Always
+          envFrom:
+            - configMapRef:
+                name: {{ include "app.fullname" . }}-config
+          ports:
+            - containerPort: 8080
+          livenessProbe:
+            httpGet:
+              scheme: HTTP
+              path: "/api/health"
+              port: 8080
+            periodSeconds: 10
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 2
+          readinessProbe:
+            httpGet:
+              scheme: HTTP
+              path: "/api/readiness"
+              port: 8080
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 1
+          volumeMounts:
+            - name: log-volume
+              mountPath: /usr/app/logs
+        - name: fluentbit
+          image: "fluent/fluent-bit:2.1-debug"
+          ports:
+            - name: metrics
+              containerPort: 2020
+              protocol: TCP
+          env:
+            - name: FLUENT_UID
+              value: "0"
+          volumeMounts:
+            - name: config-volume
+              mountPath: /fluent-bit/etc/
+            - name: log-volume
+              mountPath: /usr/app/logs
+      restartPolicy: Always
+      volumes:
+        - name: log-volume
+          emptyDir: { }
+        - name: config-volume
+          configMap:
+            name: fluentbit-sidecar-backend

@@ -1,0 +1,7 @@
+replicaCount: 1
+revisionHistoryLimit: 3
+namespace: default
+
+image:
+  repository: itchimonji/nestjs-logging-tracing-backend
+  tag: "v7.1.0"

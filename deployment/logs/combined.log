@@ -1,0 +1,15 @@
+{"level":"info","message":"Tracing initialized","service":"api-service","timestamp":"2023-05-20T18:11:27.964Z"}
+{"level":"info","message":"Register prometheus client with title: api-service","service":"api-service","timestamp":"2023-05-20T18:11:28.006Z"}
+{"level":"info","message":"Register prometheus client with prefix: API_Service_","service":"api-service","timestamp":"2023-05-20T18:11:28.006Z"}
+{"level":"info","message":"Register metrics gauge for: Ready","service":"api-service","timestamp":"2023-05-20T18:11:28.007Z"}
+{"level":"info","message":"🚀 Application is running on port: http://[::1]:8080/api","service":"api-service","timestamp":"2023-05-20T18:11:28.016Z"}
+{"level":"info","message":"Tracing initialized","service":"api-service","timestamp":"2023-05-20T18:11:36.452Z"}
+{"level":"info","message":"Register prometheus client with title: api-service","service":"api-service","timestamp":"2023-05-20T18:11:36.476Z"}
+{"level":"info","message":"Register prometheus client with prefix: API_Service_","service":"api-service","timestamp":"2023-05-20T18:11:36.476Z"}
+{"level":"info","message":"Register metrics gauge for: Ready","service":"api-service","timestamp":"2023-05-20T18:11:36.477Z"}
+{"level":"error","message":"Nest application error: listen EADDRINUSE: address already in use :::8081","service":"api-service","timestamp":"2023-05-20T18:11:36.486Z"}
+{"level":"info","message":"Tracing initialized","service":"api-service","timestamp":"2023-05-20T18:12:09.739Z"}
+{"level":"info","message":"Register prometheus client with title: api-service","service":"api-service","timestamp":"2023-05-20T18:12:09.764Z"}
+{"level":"info","message":"Register prometheus client with prefix: API_Service_","service":"api-service","timestamp":"2023-05-20T18:12:09.764Z"}
+{"level":"info","message":"Register metrics gauge for: Ready","service":"api-service","timestamp":"2023-05-20T18:12:09.764Z"}
+{"level":"error","message":"Nest application error: listen EADDRINUSE: address already in use :::8081","service":"api-service","timestamp":"2023-05-20T18:12:09.772Z"}

@@ -13,9 +13,11 @@ import {
   secureApplication,
   winstonLogger
 } from "@nestjs-logging-tracing/api-core-modules";
+import {initTracing} from "../../../libs/api-core-modules/src/lib/tracing/jaeger.model";
 
 async function bootstrap() {
   initWinston(loadApiConfiguration().apiTitle);
+  initTracing();
 
   const app = await NestFactory.create(AppModule, {
     logger: ["log", "error", "warn", "debug", "verbose"]

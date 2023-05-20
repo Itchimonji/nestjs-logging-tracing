@@ -1,0 +1,23 @@
+jaeger:
+  cassandra:
+    config:
+      cluster_size: 2
+      seed_size: 2
+    persistence:
+      enabled: true
+      size: 10Gi
+    exporter:
+      enabled: false
+  query:
+    enabled: true
+  collector:
+    enabled: true
+    resources:
+      limits:
+        cpu: 1
+        memory: 1Gi
+      requests:
+        cpu: 500m
+        memory: 512Mi
+  spark:
+    enabled: true

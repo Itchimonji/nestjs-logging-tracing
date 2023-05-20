@@ -1,0 +1,59 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: fluentbit-sidecar-backend
+data:
+  fluent-bit.conf: |
+    [SERVICE]
+        HTTP_Server    On
+        HTTP_Listen    0.0.0.0
+        HTTP_PORT      2020
+        Flush          5
+        Daemon         Off
+        Log_Level      debug
+        Parsers_File   parsers.conf
+    
+    [INPUT]
+        Name tail
+        Path /usr/app/logs/*.log
+        multiline.parser docker, cri
+        Tag custom.*
+        Mem_Buf_Limit 300MB
+        Skip_Long_Lines On
+    
+    [FILTER]
+        Name         parser
+        Parser       docker
+        Match        custom.*
+        Key_Name     log
+        Reserve_Data On
+        Preserve_Key On
+    
+    [FILTER]
+        Name modify
+        Match *
+    
+    [OUTPUT]
+        Name opensearch
+        Match *
+        Host opensearch-cluster-master-headless.default.svc.cluster.local
+        Port 9200
+        Index fluent_bit_host
+        Logstash_Format On
+        Logstash_Prefix custom
+        Retry_Limit 10
+        Buffer_Size 512KB
+        Replace_Dots On
+        Suppress_Type_Name On
+        tls        On
+        tls.verify Off
+        http_User admin
+        http_Passwd admin
+  parsers.conf: |
+    [PARSER]
+        Name   docker
+        Format json
+        Time_Key time
+        Time_Format %d/%b/%Y:%H:%M:%S %z
+        Decode_Field_As   escaped_utf8    log    do_next
+        Decode_Field_As   json       log
