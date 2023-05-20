@@ -1,0 +1,16 @@
+apiVersion: v2
+name: opensearch
+appVersion: "1.0"
+description: A Helm chart for elk
+version: 1.0.0
+type: application
+dependencies:
+  - name: opensearch
+    version: 2.12.0
+    repository: https://opensearch-project.github.io/helm-charts
+  - name: opensearch-dashboards
+    version: 2.10.0
+    repository: https://opensearch-project.github.io/helm-charts
+  - name: fluent-bit
+    version: 0.29.0
+    repository: https://fluent.github.io/helm-charts

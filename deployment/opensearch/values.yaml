@@ -1,0 +1,55 @@
+opensearch:
+  opensearchJavaOpts: "-Xmx1024M -Xms1024M"
+  replicas: 3
+  persistence:
+    enableInitChown: false
+    enabled: true
+    size: 10Gi
+
+  hostAliases:
+    - ip: "127.0.0.1"
+
+opensearch-dashboards:
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "512M"
+    limits:
+      cpu: "500m"
+      memory: "1024M"
+
+fluent-bit:
+  config:
+    inputs: |
+      [INPUT]
+          Name              tail
+          Path              /var/log/containers/*.log
+          # multiline.parser docker, cri
+          parser            docker
+          Tag               kube.*
+          Mem_Buf_Limit     700MB
+          Skip_Long_Lines   On
+          Refresh_Interval  5
+
+      [INPUT]
+          Name systemd
+          Tag host.*
+          Systemd_Filter _SYSTEMD_UNIT=kubelet.service
+          Read_From_Tail On
+
+    outputs: |
+      [OUTPUT]
+          Name opensearch
+          Match *
+          Host opensearch-cluster-master-headless.opensearch.svc.cluster.local
+          Port 9200
+          Index fluent_bit_kube
+          Logstash_Format On
+          Retry_Limit 10
+          Buffer_Size 512KB
+          Replace_Dots On
+          Suppress_Type_Name On
+          tls        On
+          tls.verify Off
+          http_User admin
+          http_Passwd admin

@@ -1,0 +1,12 @@
+dependencies:
+- name: opensearch
+  repository: https://opensearch-project.github.io/helm-charts
+  version: 2.12.0
+- name: opensearch-dashboards
+  repository: https://opensearch-project.github.io/helm-charts
+  version: 2.10.0
+- name: fluent-bit
+  repository: https://fluent.github.io/helm-charts
+  version: 0.29.0
+digest: sha256:7dbc214857f3dbc3456c6b74142190d91ac3ccd43099b20aed571d1e9250fff8
+generated: "2023-05-20T14:28:53.526179+02:00"

@@ -42,45 +42,29 @@ $ nx serve api-database
 $ nx serve frontend-app
 ```
 
-## Building
-
-To generate Docker images you need to run following commands.
-
-```
-docker build -t itchimonji/nestjs-logging-tracing-backend:v7.0.2-arm -f Dockerfile.api-database .
-docker build -t itchimonji/nestjs-logging-tracing-frontend:v7.0.5-arm -f Dockerfile.frontend .
-```
-
-## Docker - Create a multi arch build
-
-```
-docker manifest create \
-itchimonji/nestjs-logging-tracing-frontend:v7.0.5 \
---amend itchimonji/nestjs-logging-tracing-frontend:v7.0.5-arm \
---amend itchimonji/nestjs-logging-tracing-frontend:v7.0.5-amd
-
-docker manifest push itchimonji/nestjs-logging-tracing-frontend:v7.0.5
-```
-
 # Create the Local Kubernetes Cluster
-
-To run the local Kubernetes cluster you need to have installed [Terraform](https://www.terraform.io/), [kind](https://kind.sigs.k8s.io/) and [Docker](https://www.docker.com/). Docker must also run.
 
 ## Creation with pure kind
 
-## Init
+To run the local Kubernetes cluster you need to have installed [kind](https://kind.sigs.k8s.io/) and [Docker](https://www.docker.com/). Docker must also run.
+
+
+### Init
 
 ```
-kind create cluster --config=kind.config.yaml  
+kind create cluster --config=kind/kind.config.yaml  
 ```
 
-## Destroy
+### Destroy
 
 ```
 kind delete cluster --name nestjs-logging
 ```
 
 ## Creation with Terraform
+
+To run the local Kubernetes cluster you need to have installed [Terraform](https://www.terraform.io/), [kind](https://kind.sigs.k8s.io/) and [Docker](https://www.docker.com/). Docker must also run.
+
 
 ### Init
 
